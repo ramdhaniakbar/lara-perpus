@@ -34,3 +34,31 @@
 <script src="{{ asset('/assets/dist/js/pages/dashboard.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('/assets/dist/js/demo.js') }}"></script>
+<!-- DataTables -->
+<script src="{{ asset('/assets/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('/assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+@stack('scripts')
+{{-- Toastr js --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script>
+   @if (Session::has('message'))
+      var type = "{{ Session::get('alert-type', 'info') }}"
+      switch (type) {
+         case 'info':
+            toastr.info("{{ Session::get('message') }}")
+            break;
+      
+         case 'success':
+            toastr.success("{{ Session::get('message') }}")
+            break;
+         
+         case 'warning':
+            toastr.warning("{{ Session::get('message') }}")
+            break;
+
+         case 'error':
+            toastr.error("{{ Session::get('message') }}")
+            break;
+      }
+   @endif
+</script>
