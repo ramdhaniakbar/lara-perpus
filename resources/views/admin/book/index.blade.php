@@ -4,14 +4,18 @@
    <div class="box">
       <div class="box-header">
          <h3 class="box-title">Data Penulis</h3>
-         <a href="{{ route('admin.author.create') }}" class="btn btn-primary">Tambah Penulis</a>
+         <a href="{{ route('admin.book.create') }}" class="btn btn-primary">Tambah Buku</a>
       </div>
       <div class="box-body">
          <table id="dataTable" class="table table-bordered table-hover">
             <thead>
                <tr>
                   <th>Id</th>
-                  <th>Nama Penulis</th>
+                  <th>Judul</th>
+                  <th>Deskripsi</th>
+                  <th>Jumlah Buku</th>
+                  <th>Penulis</th>
+                  <th>Sampul</th>
                   <th>Aksi</th>
                </tr>
             </thead>
@@ -27,8 +31,8 @@
 @endsection
 
 @push('styles')
-<link rel="stylesheet"
-   href="{{ asset('/assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
+   <link rel="stylesheet"
+      href="{{ asset('/assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
 @endpush
 
 @push('scripts')
@@ -41,11 +45,15 @@
          $('#dataTable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{{ route('admin.author.data') }}',
+            ajax: '{{ route('admin.book.data') }}',
             columns: [
                { data: 'DT_RowIndex', orderable: false, searchable: false },
-               { data: 'name' },
-               { data: 'action' }
+               { data: 'title' },
+               { data: 'description' },
+               { data: 'qty' },
+               { data: 'author' },
+               { data: 'cover' },
+               { data: 'action' },
             ]
          })
       })

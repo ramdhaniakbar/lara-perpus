@@ -3,15 +3,15 @@
 @section('content')
    <div class="box">
       <div class="box-header">
-         <h3 class="box-title">Data Penulis</h3>
-         <a href="{{ route('admin.author.create') }}" class="btn btn-primary">Tambah Penulis</a>
+         <h3 class="box-title">Data Peminjaman Buku</h3>
       </div>
       <div class="box-body">
          <table id="dataTable" class="table table-bordered table-hover">
             <thead>
                <tr>
                   <th>Id</th>
-                  <th>Nama Penulis</th>
+                  <th>Nama</th>
+                  <th>Judul Buku</th>
                   <th>Aksi</th>
                </tr>
             </thead>
@@ -19,10 +19,10 @@
       </div>
    </div>
 
-   <form action="" method="POST" id="deleteForm">
+   <form action="" method="POST" id="returnForm">
       @csrf
-      @method('DELETE')
-      <button type="submit" style="display: none">Hapus</button>
+      @method('PUT')
+      <button type="submit" style="display: none">Return</button>
    </form>
 @endsection
 
@@ -41,10 +41,11 @@
          $('#dataTable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{{ route('admin.author.data') }}',
+            ajax: '{{ route('admin.borrow.data') }}',
             columns: [
                { data: 'DT_RowIndex', orderable: false, searchable: false },
-               { data: 'name' },
+               { data: 'user' },
+               { data: 'book_title' },
                { data: 'action' }
             ]
          })
